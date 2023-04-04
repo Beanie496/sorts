@@ -3,7 +3,7 @@
 #include "sorts.h"
 
 
-void print_array(int *array, int length)
+void printArray(int *array, int length)
 {
 	print("%d", array[0]);
 	for (int i = 0; i < length; i++)

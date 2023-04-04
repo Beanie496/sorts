@@ -4,7 +4,7 @@
 #include "sorts.h"
 
 
-int *init_array(int length, int range)
+int *initArray(int length, int range)
 {
 	int *array = malloc(length * sizeof(int));
 	int i;
