@@ -20,5 +20,15 @@ int main(int argc, char *argv[])
 	printArray(array, length);
 	free(array);
 
+	// 100,000
+	length = 100000;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Binary search insertion sort:\n");
+	binaryInsertionSort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	free(array);
+
 	return 0;
 }
