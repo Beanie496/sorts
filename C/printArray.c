@@ -5,7 +5,8 @@
 
 void printArray(int *array, int length)
 {
-	print("%d", array[0]);
+	printf("%d", array[0]);
 	for (int i = 0; i < length; i++)
 		printf(", %d", array[i]);
+	printf("\n");
 }
