@@ -1,9 +1,16 @@
-SRC = binaryRadixSort.c binarySearchInsertionSort.c bogo_sort.c bubble_sort.c counting_sort.c decimal_radix_sort.c fully_threaded_merge_sort.c heapsort.c hexidecimal_radix_sort.c initArray.c in_place_insertion_sort.c main.c merge_sort.c printArray.c quicksort.c quicksort_with_stages.c slowsort.c stooge_sort.c
+SRC = binaryRadixSort.c binarySearchInsertionSort.c
+#bogo_sort.c bubble_sort.c counting_sort.c decimal_radix_sort.c fully_threaded_merge_sort.c heapsort.c hexidecimal_radix_sort.c
+SRC += initArray.c
+#in_place_insertion_sort.c
+SRC += main.c
+#merge_sort.c
+SRC += printArray.c
+#quicksort.c quicksort_with_stages.c slowsort.c stooge_sort.c
 OBJ = $(SRC:.c=.o)
 BINDIR = /usr/local/bin
 CC = cc
 STRIP = strip
-EXE = 
+EXE = sorts
 CFLAGS = -pedantic -Wall -O2
 
 
