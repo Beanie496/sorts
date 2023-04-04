@@ -1,4 +1,4 @@
-SRC = binary_radix_sort.c bogo_sort.c counting_sort.c fully_threaded_merge_sort.c hexidecimal_radix_sort.c main.c merge_sort.c quicksort_with_stages.c binary_search_insertion_sort.c bubble_sort.c decimal_radix_sort.c heapsort.c in_place_insertion_sort.c quicksort.c slowsort.c stooge_sort.c
+SRC = binaryRadixSort.c binarySearchInsertionSort.c bogo_sort.c bubble_sort.c counting_sort.c decimal_radix_sort.c fully_threaded_merge_sort.c heapsort.c hexidecimal_radix_sort.c initArray.c in_place_insertion_sort.c main.c merge_sort.c printArray.c quicksort.c quicksort_with_stages.c slowsort.c stooge_sort.c
 OBJ = $(SRC:.c=.o)
 BINDIR = /usr/local/bin
 CC = cc
