@@ -8,7 +8,7 @@ void countingSort(int array[], int length)
 	int *secondaryArray = malloc(length * sizeof(int));
 	int maxNumber = 0;
 	int i;
-	
+
 	// This finds the highest number so it knows how long to make the counting list
 	for (i = 0; i < length; i++)
 		if (array[i] > maxNumber)
@@ -39,7 +39,7 @@ void countingSort(int array[], int length)
 		// in the next index
 		countingList[array[i]]++;
 	}
-	
+
 	for (i = 0; i < length; i++)
 		array[i] = secondaryArray[i];
 

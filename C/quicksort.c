@@ -22,7 +22,7 @@ void partition(int *start, int* end)
 	while (++p2 < pivot)
 		if (*p2 < *pivot)
 			swap(p1++, p2);
-	
+
 	swap(p1, pivot);
 
 	partition(start, p1 - 1);

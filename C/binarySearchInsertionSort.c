@@ -54,4 +54,4 @@ int *search(int *start, int *end)
 		return start;
 	else
 		return searchPtr;
-}   
+}

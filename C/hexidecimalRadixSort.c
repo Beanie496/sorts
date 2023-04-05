@@ -9,7 +9,7 @@ void hexidecimalRadixSort(int array[], int length)
 {
 	int maxNumber = 0;
 	int i;
-	
+
 	// This finds the highest number so it knows how many times to iterate
 	for (i = 0; i < length; i++)
 		if (array[i] > maxNumber)
