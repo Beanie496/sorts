@@ -1,7 +1,5 @@
 #include "sorts.h"
 
-static void swap (int* startPointer, int* endPointer);
-
 
 void stoogeSort(int array[], int length)
 {
@@ -14,12 +12,4 @@ void stoogeSort(int array[], int length)
 	stoogeSort(array, 2 * (length + 1) / 3);
 	stoogeSort(array + length / 3, 2 * (length + 1) /3);
 	stoogeSort(array, 2 * (length + 1) / 3);
-}
-
-
-void swap (int* startPointer, int* endPointer)
-{
-	int temp = *startPointer;
-	*startPointer = *endPointer;
-	*endPointer = temp;
 }

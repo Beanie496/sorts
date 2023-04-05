@@ -4,7 +4,6 @@
 #include "sorts.h"
 
 static void shuffle(int array[], int length);
-static inline void swap(int *p1, int *p2);
 
 
 int bogoSort(int array[], int length)
@@ -45,13 +44,4 @@ void shuffle(int array[], int length)
 		randItem = random() % (length - i) + i;
 		swap(&array[i], &array[randItem]);
 	}
-}
-
-
-void swap(int *p1, int *p2)
-{
-	int temp = *p1;
-	*p1 = *p2;
-	*p2 = temp;
-
 }

@@ -1,7 +1,5 @@
 #include "sorts.h"
 
-static inline void swap(int *p1, int *p2);
-
 
 void bubbleSort(int array[], int length)
 {
@@ -16,12 +14,4 @@ void bubbleSort(int array[], int length)
 			}
 		}
 	}
-}
-
-
-void swap(int *pointer1, int *pointer2)
-{
-	int temp = *pointer2;
-	*pointer2 = *pointer1;
-	*pointer1 = temp;
 }

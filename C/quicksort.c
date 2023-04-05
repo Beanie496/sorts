@@ -1,6 +1,5 @@
 #include "sorts.h"
 
-static void swap(int *start, int* end);
 static void partition(int *start, int* end);
 
 
@@ -28,12 +27,4 @@ void partition(int *start, int* end)
 
 	partition(start, p1 - 1);
 	partition(p1 + 1, end);
-}
-
-
-void swap(int *start, int* end)
-{
-	int temp = *end;
-	*end = *start;
-	*start = temp;
 }

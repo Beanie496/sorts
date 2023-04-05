@@ -1,7 +1,5 @@
 #include "sorts.h"
 
-static void swap(int* start, int* end);
-
 
 void slowsort(int array[], int length)
 {
@@ -15,12 +13,4 @@ void slowsort(int array[], int length)
 		swap(array + length / 2 - 1, array + length - 1);
 
 	slowsort(array, length - 1);
-}
-
-
-void swap(int* start, int* end)
-{
-	int temp = *end;
-	*end = *start;
-	*start = temp;
 }

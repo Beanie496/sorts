@@ -3,7 +3,6 @@
 #include "sorts.h"
 
 static void partition(int *start, int* end, int *iteration);
-static void swap(int *start, int* end);
 
 
 void quicksortWithStages(int array[], int length)
@@ -34,12 +33,4 @@ void partition(int *start, int* end, int *iteration)
 
 	partition(start, p1 - 1, iteration);
 	partition(p1 + 1, end, iteration);
-}
-
-
-void swap(int *start, int* end)
-{
-	int temp = *end;
-	*end = *start;
-	*start = temp;
 }

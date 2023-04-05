@@ -2,7 +2,6 @@
 
 static void siftDown(int array[], int *startPoint, int length);
 static void heapify(int array[], int length);
-static void swap(int *p1, int *p2);
 
 
 void heapsort(int array[], int length)
@@ -75,12 +74,4 @@ void siftDown(int array[], int *startPos, int length)
 	if (posOfFirstChild == length - 1)
 		if (array[posOfFirstChild] > array[pos])
 			swap(&array[pos], &array[posOfFirstChild]);
-}
-
-
-void swap(int *p1, int *p2)
-{
-	int temp = *p1;
-	*p1 = *p2;
-	*p2 = temp;
 }
