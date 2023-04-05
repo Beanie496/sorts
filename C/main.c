@@ -147,5 +147,16 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
+	// 250
+	length = 250;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Slowsort:\n");
+	slowsort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	printf("\n");
+	free(array);
+
 	return 0;
 }
