@@ -136,5 +136,16 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
+	// 100
+	length = 100;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Quicksort with stages:\n");
+	quicksortWithStages(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	printf("\n");
+	free(array);
+
 	return 0;
 }

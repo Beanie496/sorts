@@ -12,3 +12,4 @@ void hexidecimalRadixSort(int array[], int length);
 void mergeSort(int array[], int length);
 void merge(int *array1, int *array2, int length);
 void quicksort(int array[], int length);
+void quicksortWithStages(int array[], int length);
