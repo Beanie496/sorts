@@ -8,3 +8,4 @@ void countingSort(int array[], int length);
 void decimalRadixSort(int array[], int length);
 void threadedMergeSort(int array[], int length);
 void heapsort(int array[], int length);
+void hexidecimalRadixSort(int array[], int length);
