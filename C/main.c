@@ -82,17 +82,6 @@ int main(int argc, char *argv[])
 	free(array);
 
 	// 10,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Threaded merge sort:\n");
-	threadedMergeSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
-
-	// 10,000,000
 	length = 10000000;
 	array = initArray(length, 1000);
 	printArray(array, length);
@@ -164,6 +153,17 @@ int main(int argc, char *argv[])
 	printArray(array, length);
 	printf("Stooge sort:\n");
 	stoogeSort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	printf("\n");
+	free(array);
+
+	// 10,000,000
+	length = 100000000;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Threaded merge sort:\n");
+	threadedMergeSort(array, length);
 	printf("Sorted.\n");
 	printArray(array, length);
 	printf("\n");
