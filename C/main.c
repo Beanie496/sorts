@@ -158,5 +158,16 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
+	// 2000
+	length = 1000;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Stooge sort:\n");
+	stoogeSort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	printf("\n");
+	free(array);
+
 	return 0;
 }

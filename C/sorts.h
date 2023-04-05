@@ -14,3 +14,4 @@ void merge(int *array1, int *array2, int length);
 void quicksort(int array[], int length);
 void quicksortWithStages(int array[], int length);
 void slowsort(int array[], int length);
+void stoogeSort(int array[], int length);
