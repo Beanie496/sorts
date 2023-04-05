@@ -59,5 +59,16 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
+	// 100,000,000
+	length = 1000;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Counting sort:\n");
+	countingSort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
+	printf("\n");
+	free(array);
+
 	return 0;
 }
