@@ -31,18 +31,21 @@ int main(int argc, char *argv[])
 	binaryInsertionSort(array, length);
 	printf("Sorted.\n");
 	printArray(array, length);
+	printf("\n");
 	free(array);
 
 	// 11
 	// you can try 12, but do you really want to wait that long?
 	// remember bogo sorts are O(n!)
-	length = 11;
+	length = 12;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Bogo sort:\n");
-	bogoSort(array, length);
+	int iterations = bogoSort(array, length);
 	printf("Sorted.\n");
 	printArray(array, length);
+	printf("Iterations: %d\n", iterations);
+	printf("\n");
 	free(array);
 
 	return 0;

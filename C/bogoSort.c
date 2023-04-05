@@ -1,0 +1,57 @@
+#include <stdlib.h>
+#include <time.h>
+
+#include "sorts.h"
+
+static void shuffle(int array[], int length);
+static inline void swap(int *p1, int *p2);
+
+
+int bogoSort(int array[], int length)
+{
+	int counter = 0;
+	int sorted;
+
+	srandom(time(0));
+
+
+	while (1) {
+		sorted = 1;
+
+		for (int i = 1; i < length; i++) {
+			if (array[i] < array[i - 1]) {
+				sorted = 0;
+				break;
+			}
+		}
+
+		if (sorted)
+			return counter;
+
+		shuffle(array, length);
+
+		counter++;
+
+	}
+}
+
+
+// fischer-random shuffle
+// TODO: gain internet access and spell 'fischer' correctly
+void shuffle(int array[], int length)
+{
+	int randItem;
+	for (int i = 0; i < length - 1; i++) { // no point swapping the last item with itself
+		randItem = random() % (length - i) + i;
+		swap(&array[i], &array[randItem]);
+	}
+}
+
+
+void swap(int *p1, int *p2)
+{
+	int temp = *p1;
+	*p1 = *p2;
+	*p2 = temp;
+
+}
