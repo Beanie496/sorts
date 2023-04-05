@@ -6,3 +6,4 @@ int bogoSort(int array[], int length);
 void bubbleSort(int array[], int length);
 void countingSort(int array[], int length);
 void decimalRadixSort(int array[], int length);
+void threadedMergeSort(int array[], int length);

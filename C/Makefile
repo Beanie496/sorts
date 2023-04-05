@@ -1,5 +1,5 @@
-SRC = binaryRadixSort.c binarySearchInsertionSort.c bogoSort.c bubbleSort.c countingSort.c decimalRadixSort.c
-#fully_threaded_merge_sort.c heapsort.c hexidecimal_radix_sort.c
+SRC = binaryRadixSort.c binarySearchInsertionSort.c bogoSort.c bubbleSort.c countingSort.c decimalRadixSort.c threaded_merge_sort.c
+#heapsort.c hexidecimal_radix_sort.c
 SRC += initArray.c
 #in_place_insertion_sort.c
 SRC += main.c
