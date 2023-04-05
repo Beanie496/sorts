@@ -2,7 +2,7 @@
 
 #include "sorts.h"
 
-static void countingSort(int array[], int length, int digit);
+static void digitCountingSort(int array[], int length, int digit);
 
 
 void binaryRadixSort(int array[], int length)
@@ -17,11 +17,11 @@ void binaryRadixSort(int array[], int length)
 
 
 	for (i = 0; (1 << i) <= maxNumber; i++)
-		countingSort(array, length, i);
+		digitCountingSort(array, length, i);
 }
 
 
-void countingSort(int array[], int length, int shiftBy)
+void digitCountingSort(int array[], int length, int shiftBy)
 {
 	int valuesTotal[2] = { 0 };
 	int *secondaryArray = malloc(length * sizeof(int));
