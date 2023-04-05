@@ -23,9 +23,8 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
-
-	// 100,000
-	length = 100000;
+	// 400,000
+	length = 400000;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Binary search insertion sort:\n");
@@ -49,8 +48,8 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
-	// 10,000
-	length = 10000;
+	// 40,000
+	length = 40000;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Bubble sort:\n");
@@ -61,7 +60,7 @@ int main(int argc, char *argv[])
 	free(array);
 
 	// 100,000,000
-	length = 10000000;
+	length = 100000000;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Counting sort:\n");
@@ -148,7 +147,7 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
-	// 2000
+	// 2,000
 	length = 2000;
 	array = initArray(length, 1000);
 	printArray(array, length);
@@ -159,7 +158,7 @@ int main(int argc, char *argv[])
 	printf("\n");
 	free(array);
 
-	// 10,000,000
+	// 100,000,000
 	length = 100000000;
 	array = initArray(length, 1000);
 	printArray(array, length);
