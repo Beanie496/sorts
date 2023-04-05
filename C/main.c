@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	// 11
 	// you can try 12, but do you really want to wait that long?
 	// remember bogo sorts are O(n!)
-	length = 11;
+	length = 10;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Bogo sort:\n");
