@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	// 11
 	// you can try 12, but do you really want to wait that long?
 	// remember bogo sorts are O(n!)
-	length = 12;
+	length = 11;
 	array = initArray(length, 1000);
 	printArray(array, length);
 	printf("Bogo sort:\n");
@@ -45,6 +45,17 @@ int main(int argc, char *argv[])
 	printf("Sorted.\n");
 	printArray(array, length);
 	printf("Iterations: %d\n", iterations);
+	printf("\n");
+	free(array);
+
+	// 10,000
+	length = 1000;
+	array = initArray(length, 1000);
+	printArray(array, length);
+	printf("Bubble sort:\n");
+	bubbleSort(array, length);
+	printf("Sorted.\n");
+	printArray(array, length);
 	printf("\n");
 	free(array);
 
