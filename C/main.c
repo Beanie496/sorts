@@ -7,6 +7,7 @@
 
 int main(int argc, char *argv[])
 {
+	// TODO: command-line args
 	int *array;
 	int length;
 
