@@ -11,10 +11,6 @@ int dosort(int length, int (*sort)(int *array, int length), char *message);
 int main(int argc, char *argv[])
 {
 	// TODO: command-line args
-	int *array;
-	int length;
-
-
 
 	// 100,000,000
 	dosort(100000000, &binaryRadixSort, "Binary radix sort");
