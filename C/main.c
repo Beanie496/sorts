@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	int length;
 
 
+
 	// 100,000,000
 	dosort(100000000, &binaryRadixSort, "Binary radix sort");
 
@@ -67,6 +68,7 @@ int dosort(int length, int (*sort)(int *array, int length), char *message)
 {
 	int *array = initArray(length, 1000);
 	printArray(array, length);
+	printf("\nLength: %d\n", length);
 	printf("%s:\n", message);
 
 	// this is likely going to be garbage, but it's used once

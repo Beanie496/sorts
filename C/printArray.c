@@ -8,5 +8,4 @@ void printArray(int *array, int length)
 	printf("%d", array[0]);
 	for (int i = 1; i < length; i++)
 		printf(", %d", array[i]);
-	printf("\nLength: %d\n", length);
 }
