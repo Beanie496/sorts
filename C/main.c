@@ -77,7 +77,7 @@ int dosort(int length, int (*sort)(int *array, int length), char *message)
 
 	printf("Sorted.\n");
 	printArray(array, length);
-	printf("\n");
+	printf("\n\n");
 	free(array);
 
 	return ret;
