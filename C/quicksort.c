@@ -1,4 +1,5 @@
 #include "sorts.h"
+#include "util.h"
 
 static void partition(int *start, int* end);
 

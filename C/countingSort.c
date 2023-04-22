@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "sorts.h"
+#include "util.h"
 
 
 void countingSort(int array[], int length)

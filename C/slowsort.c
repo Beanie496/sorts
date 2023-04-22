@@ -1,4 +1,5 @@
 #include "sorts.h"
+#include "util.h"
 
 
 void slowsort(int array[], int length)

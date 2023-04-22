@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "sorts.h"
+#include "util.h"
 
 static void partition(int *start, int* end, int *iteration);
 

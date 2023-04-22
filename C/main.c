@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "sorts.h"
+#include "util.h"
 
 int dosort(int length, int (*sort)(int *array, int length), char *message);
 

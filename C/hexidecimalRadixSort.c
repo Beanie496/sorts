@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "sorts.h"
+#include "util.h"
 
 static void digitCountingSort(int array[], int length, int digit);
 

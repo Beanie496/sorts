@@ -2,6 +2,7 @@
 #include <time.h>
 
 #include "sorts.h"
+#include "util.h"
 
 static void shuffle(int array[], int length);
 

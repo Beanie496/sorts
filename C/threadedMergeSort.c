@@ -3,6 +3,7 @@
 #include <pthread.h>
 
 #include "sorts.h"
+#include "util.h"
 
 typedef struct {
 	int *array;

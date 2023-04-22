@@ -1,4 +1,5 @@
 #include "sorts.h"
+#include "util.h"
 
 static void siftDown(int array[], int *startPoint, int length);
 static void heapify(int array[], int length);
