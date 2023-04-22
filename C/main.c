@@ -4,6 +4,8 @@
 
 #include "sorts.h"
 
+int dosort(int length, int (*sort)(int *array, int length), char *message);
+
 
 int main(int argc, char *argv[])
 {
@@ -13,161 +15,67 @@ int main(int argc, char *argv[])
 
 
 	// 100,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Binary radix sort:\n");
-	binaryRadixSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(100000000, &binaryRadixSort, "Binary radix sort");
 
 	// 400,000
-	length = 400000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Binary search insertion sort:\n");
-	binaryInsertionSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(400000, &binaryInsertionSort, "Binary search insertion sort");
 
 	// 11
 	// you can try 12, but do you really want to wait that long?
 	// remember bogo sorts are O(n!)
-	length = 11;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Bogo sort:\n");
-	int iterations = bogoSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("Iterations: %d\n", iterations);
-	printf("\n");
-	free(array);
+	int iterations = dosort(11, &bogoSort, "Bogo sort");
+	printf("Iterations: %d\n\n", iterations);
 
 	// 40,000
-	length = 40000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Bubble sort:\n");
-	bubbleSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(40000, &bubbleSort, "Bubble sort");
 
 	// 100,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Counting sort:\n");
-	countingSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(100000000, &countingSort, "Counting sort");
 
 	// 100,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Decimal radix sort:\n");
-	decimalRadixSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(100000000, &decimalRadixSort, "Decimal radix sort");
 
 	// 10,000,000
-	length = 10000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Heapsort:\n");
-	heapsort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(10000000, &heapsort, "Heapsort");
 
 	// 100,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Hexidecimal radix sort:\n");
-	hexidecimalRadixSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(100000000, &hexidecimalRadixSort, "Hexidecimal radix sort");
 
 	// 10,000,000
-	length = 10000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Merge sort:\n");
-	mergeSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(10000000, &mergeSort, "Merge sort");
 
 	// 1,000,000
-	length = 1000000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Quicksort:\n");
-	quicksort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(1000000, &quicksort, "Quicksort");
 
 	// 100
-	length = 100;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Quicksort with stages:\n");
-	quicksortWithStages(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(100, &quicksortWithStages, "Quicksort with stages");
 
 	// 250
-	length = 250;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Slowsort:\n");
-	slowsort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(250, &slowsort, "Slowsort");
 
 	// 2,000
-	length = 2000;
-	array = initArray(length, 1000);
-	printArray(array, length);
-	printf("Stooge sort:\n");
-	stoogeSort(array, length);
-	printf("Sorted.\n");
-	printArray(array, length);
-	printf("\n");
-	free(array);
+	dosort(2000, &stoogeSort, "Stooge sort");
 
 	// 100,000,000
-	length = 100000000;
-	array = initArray(length, 1000);
+	dosort(100000000, &threadedMergeSort, "Threaded merge sort");
+
+	return 0;
+}
+
+
+int dosort(int length, int (*sort)(int *array, int length), char *message)
+{
+	int *array = initArray(length, 1000);
 	printArray(array, length);
-	printf("Threaded merge sort:\n");
-	threadedMergeSort(array, length);
+	printf("%s:\n", message);
+
+	// this is likely going to be garbage, but it's used once
+	int ret = sort(array, length);
+
 	printf("Sorted.\n");
 	printArray(array, length);
 	printf("\n");
 	free(array);
 
-	return 0;
+	return ret;
 }
