@@ -20,6 +20,7 @@ void partition(int *start, int* end, int *iteration)
 
 	printf("Pass %d: ", (*iteration)++);
 	printArray(start, end - start + 1);
+	printf("\n");
 
 	int *pivot = end;
 	int *p1 = start;
