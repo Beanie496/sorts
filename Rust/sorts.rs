@@ -14,11 +14,11 @@ fn init_array<T: Copy>(arr: &mut Vec<T>)
     // TODO: figure out how to make this hardware-general
     for _i in 0..arr.capacity() {
         // TODO: surely there's a better way to do this?
+        union U<T: Copy> {
+            x: u64,
+            y: T,
+        }
         unsafe {
-            union U<T: Copy> {
-                x: u64,
-                y: T,
-            }
             let mut u = U { x: 0 };
             x86_64::_rdrand64_step(&mut u.x);
             arr.push(u.y);
