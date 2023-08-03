@@ -7,7 +7,7 @@ BINDIR = /usr/local/bin
 CC = cc
 STRIP = strip
 EXE = sorts
-CFLAGS = -pedantic -Wall -O2
+CFLAGS = -pedantic -Wall -O2 -march=native -flto
 
 
 .PHONY: all help strip install clean
