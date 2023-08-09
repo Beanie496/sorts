@@ -1,22 +1,18 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "sorts.h"
 #include "util.h"
 
 static void digitCountingSort(int array[], int length, int digit);
+static int getHighestNumberInArray(int array[], int length);
 
 
 void binaryRadixSort(int array[], int length)
 {
-	int maxNumber = 0;
+	int max = getHighestNumberInArray(array, length);
 
-	// This finds the highest number so it knows how many times to iterate
-	for (int i = 0; i < length; i++)
-		if (array[i] > maxNumber)
-			maxNumber = array[i];
-
-
-	for (int i = 0; (1 << i) <= maxNumber; i++)
+	for (int i = 0; (1 << i) <= max; i++)
 		digitCountingSort(array, length, i);
 }
 
@@ -30,7 +26,8 @@ void digitCountingSort(int array[], int length, int shiftBy)
 	for (int i = 0; i < length; i++)
 		valuesTotal[(array[i] >> shiftBy) % 2]++;
 
-	valuesTotal[1] = valuesTotal[0];
+	// doing it this way is more explicit, if more verbose
+	memmove(&valuesTotal[1], &valuesTotal[0], sizeof(*valuesTotal) * 1);
 	valuesTotal[0] = 0;
 
 	for (int i = 0; i < length; i++) {
@@ -38,8 +35,17 @@ void digitCountingSort(int array[], int length, int shiftBy)
 		valuesTotal[(array[i] >> shiftBy) % 2]++;
 	}
 
-	for (int i = 0; i < length; i++)
-		array[i] = secondaryArray[i];
+	memcpy(array, secondaryArray, sizeof(*array) * length);
 
 	free(secondaryArray);
+}
+
+
+int getHighestNumberInArray(int array[], int length)
+{
+	int max = 0;
+	for (int i = 0; i < length; i++)
+		if (array[i] > max)
+			max = array[i];
+	return max;
 }
