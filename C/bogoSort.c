@@ -31,13 +31,11 @@ int bogoSort(int array[], int length)
 		shuffle(array, length);
 
 		counter++;
-
 	}
 }
 
 
-// fischer-random shuffle
-// TODO: gain internet access and spell 'fischer' correctly
+// fisher-random shuffle
 void shuffle(int array[], int length)
 {
 	int randItem;
