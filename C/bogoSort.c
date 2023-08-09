@@ -13,8 +13,6 @@ int bogoSort(int array[], int length)
 	int counter = 0;
 	int sorted = 0;
 
-	srandom(time(0));
-
 	while (!sorted) {
 		sorted = checkArrayIsSorted(array, length);
 		shuffle(array, length);
@@ -38,6 +36,12 @@ int checkArrayIsSorted(int array[], int length)
 // fisher-random shuffle
 void shuffle(int array[], int length)
 {
+	static int hasSeeded = 0;
+	if (!hasSeeded) {
+		srandom(time(0));
+		hasSeeded = 1;
+	}
+
 	int randItem;
 	for (int i = 0; i < length - 1; i++) { // no point swapping the last item with itself
 		randItem = random() % (length - i) + i;
