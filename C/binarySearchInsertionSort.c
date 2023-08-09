@@ -15,17 +15,14 @@ void binaryInsertionSort(int array[], int length)
 }
 
 
-void insert(int *start, int *end)
+void insert(int *insert, int *value)
 {
+	// { X, X, X, v }
 	int temp = *end;
-
-	while (end > start) {
-		// this can't be merged with the while statement above, as it can only be
-		// decremented if the above statement tests true
-		end--;
-		*(end + 1) = *end;
-	}
-	*end = temp;
+	// { -, X, X, X }
+	memmove(insert + 1, insert, (value - insert) * sizeof(*value));
+	// { v, X, X, X }
+	*insert = temp;
 }
 
 
