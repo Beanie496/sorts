@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "sorts.h"
 #include "util.h"
 
@@ -18,7 +20,7 @@ void binaryInsertionSort(int array[], int length)
 void insert(int *insert, int *value)
 {
 	// { X, X, X, v }
-	int temp = *end;
+	int temp = *value;
 	// { -, X, X, X }
 	memmove(insert + 1, insert, (value - insert) * sizeof(*value));
 	// { v, X, X, X }
