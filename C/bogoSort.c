@@ -4,6 +4,7 @@
 #include "sorts.h"
 #include "util.h"
 
+static int checkArrayIsSorted(int array[], int length);
 static void shuffle(int array[], int length);
 
 
@@ -15,20 +16,24 @@ int bogoSort(int array[], int length)
 	srandom(time(0));
 
 	while (!sorted) {
-		sorted = 1;
-
-		for (int i = 1; i < length; i++) {
-			if (array[i] < array[i - 1]) {
-				sorted = 0;
-				break;
-			}
-		}
+		sorted = checkArrayIsSorted(array, length);
 		shuffle(array, length);
 		counter++;
 	}
 	return counter;
 }
 
+int checkArrayIsSorted(int array[], int length)
+{
+	int sorted = 1;
+	for (int i = 1; i < length; i++) {
+		if (array[i] < array[i - 1]) {
+			sorted = 0;
+			break;
+		}
+	}
+	return sorted;
+}
 
 // fisher-random shuffle
 void shuffle(int array[], int length)
