@@ -10,12 +10,11 @@ static void shuffle(int array[], int length);
 int bogoSort(int array[], int length)
 {
 	int counter = 0;
-	int sorted;
+	int sorted = 0;
 
 	srandom(time(0));
 
-
-	while (1) {
+	while (!sorted) {
 		sorted = 1;
 
 		for (int i = 1; i < length; i++) {
@@ -24,14 +23,10 @@ int bogoSort(int array[], int length)
 				break;
 			}
 		}
-
-		if (sorted)
-			return counter;
-
 		shuffle(array, length);
-
 		counter++;
 	}
+	return counter;
 }
 
 
