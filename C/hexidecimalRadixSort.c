@@ -23,7 +23,7 @@ void digitCountingSort(int array[], int length, int digit)
 
 	// This counts how many there are of each of the LSDs of the numbers
 	for (int i = 0; i < length; i++)
-		valuesTotal[(array[i] >> digit) % 16]++;
+		valuesTotal[(array[i] >> digit) & 15]++;
 
 	for (int i = 1; i < 16; i++)
 		valuesTotal[i] += valuesTotal[i - 1];
@@ -32,8 +32,8 @@ void digitCountingSort(int array[], int length, int digit)
 	valuesTotal[0] = 0;
 
 	for (int i = 0; i < length; i++) {
-		secondaryArray[valuesTotal[(array[i] >> digit) % 16]] = array[i];
-		valuesTotal[(array[i] >> digit) % 16]++;
+		secondaryArray[valuesTotal[(array[i] >> digit) & 15]] = array[i];
+		valuesTotal[(array[i] >> digit) & 15]++;
 	}
 
 	memcpy(array, secondaryArray, sizeof(*array) * length);
