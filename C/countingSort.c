@@ -13,8 +13,7 @@ void countingSort(int array[], int length)
 	int countingList[max + 1];
 
 	// can't initialise variable-sized object with 0's
-	for (int i = 0; i < max + 1; i++)
-		countingList[i] = 0;
+	memset(countingList, 0, sizeof(*countingList) * (max + 1));
 
 	// count occurances of each number
 	for (int i = 0; i < length; i++)
