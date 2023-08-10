@@ -15,10 +15,10 @@ void quicksortWithStages(int array[], int length)
 
 void partition(int *start, int* end, int *iteration)
 {
-	if (start > end - 1)
+	if (start >= end)
 		return;
 
-	printf("Pass %d: ", (*iteration)++);
+	printf("Pass %d: ", *iteration++);
 	printArray(start, end - start + 1);
 	printf("\n");
 
