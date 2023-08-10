@@ -5,18 +5,23 @@
 
 #include "util.h"
 
+static void randomiseArray(int *array, int length, int range);
+
 
 int *initArray(int length, int range)
 {
 	int *array = malloc(length * sizeof(int));
+	randomiseArray(array, length, range);
+	return array;
+}
 
+
+void randomiseArray(int *array, int length, int range)
+{
 	srand(time(0));
-
 	// initialising array with random numbers from 0 to 'range'
 	for (int i = 0; i < length; i++)
 		array[i] = rand() % (range + 1);
-
-	return array;
 }
 
 
