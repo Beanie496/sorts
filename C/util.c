@@ -33,3 +33,13 @@ void swap(int *p1, int *p2)
 	*p1 = *p2;
 	*p2 = temp;
 }
+
+
+int getHighestNumberInArray(int array[], int length)
+{
+	int max = 0;
+	for (int i = 0; i < length; i++)
+		if (array[i] > max)
+			max = array[i];
+	return max;
+}

@@ -5,7 +5,6 @@
 #include "util.h"
 
 static void digitCountingSort(int array[], int length, int digit);
-static int getHighestNumberInArray(int array[], int length);
 
 
 void binaryRadixSort(int array[], int length)
@@ -38,14 +37,4 @@ void digitCountingSort(int array[], int length, int shiftBy)
 	memcpy(array, secondaryArray, sizeof(*array) * length);
 
 	free(secondaryArray);
-}
-
-
-int getHighestNumberInArray(int array[], int length)
-{
-	int max = 0;
-	for (int i = 0; i < length; i++)
-		if (array[i] > max)
-			max = array[i];
-	return max;
 }
