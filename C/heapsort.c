@@ -1,8 +1,17 @@
 #include "sorts.h"
 #include "util.h"
 
+typedef struct {
+	int *pos;
+	int *firstChild;
+	int *secondChild;
+	int idx;
+} Element;
+
 static void siftDown(int array[], int *startPoint, int length);
 static void heapify(int array[], int length);
+static void calculateChildren(Element *element);
+static void swapWithChild(Element *element, int *child);
 
 
 void heapsort(int array[], int length)
@@ -31,18 +40,16 @@ void heapify(int array[], int length)
 
 void siftDown(int array[], int *startPos, int length)
 {
-	int pos = startPos - array;
-	int newPos;
-	int posOfFirstChild = pos * 2 + 1;
-	int posOfSecondChild = pos * 2 + 2;
-
+	Element element = {
+		.pos = startPos,
+		.idx = startPos - array,
+	};
+	calculateChildren(&element);
 
 	/*
 	 * This loop swaps the current element with the higher of
 	 * its two children. If the current position in the binary
 	 * tree is such that there aren't two children, this loop stops.
-	 * After that, it checks if there was only one child and swaps
-	 * with it if needed.
 	 *
 	 * Logic:
 	 * If there is only one child, the right-hand side will be
@@ -50,24 +57,35 @@ void siftDown(int array[], int *startPos, int length)
 	 * be one less. This ensures the loop is broken as soon as
 	 * there are fewer than two children.
 	 */
-	while (pos < (length - 1) / 2) {
-		if (array[pos] >= array[posOfFirstChild] && array[pos] >= array[posOfSecondChild])
+	while (element.idx < (length - 1) / 2) {
+		if (*element.pos >= *element.firstChild && *element.pos >= *element.secondChild)
 			break;
 
-		if (array[posOfFirstChild + 1] > array[posOfFirstChild])
-			newPos = posOfSecondChild;
+		if (*element.secondChild > *element.firstChild)
+			swapWithChild(&element, element.secondChild);
 		else
-			newPos = posOfFirstChild;
-
-		swap(&array[pos], &array[newPos]);
-		pos = newPos;
-
-		posOfFirstChild = pos * 2 + 1;
-		posOfSecondChild = pos * 2 + 2;
+			swapWithChild(&element, element.firstChild);
 	}
 
 
-	if (posOfFirstChild == length - 1)
-		if (array[posOfFirstChild] > array[pos])
-			swap(&array[pos], &array[posOfFirstChild]);
+	// check if there is only one child; swap if needed.
+	if (element.firstChild - array == length - 1)
+		if (*element.firstChild > *element.pos)
+			swap(element.pos, element.firstChild);
+}
+
+
+void calculateChildren(Element *element)
+{
+	element->firstChild = element->pos + element->idx + 1;
+	element->secondChild = element->pos + element->idx + 2;
+}
+
+
+void swapWithChild(Element *element, int *child)
+{
+	swap(element->pos, child);
+	element->idx += child - element->pos;
+	element->pos = child;
+	calculateChildren(element);
 }
