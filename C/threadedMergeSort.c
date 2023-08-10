@@ -68,13 +68,15 @@ void spawnNewThread(ArrayInfo *inputArgs)
 	// Reserve thread creation
 	threadsAvailable--;
 
-	ArrayInfo array1;
-	array1.array = inputArgs->array;
-	array1.length = inputArgs->length / 2;
+	ArrayInfo array1 = {
+		inputArgs->array,
+		inputArgs->length / 2,
+	};
 
-	ArrayInfo array2;
-	array2.array = inputArgs->array + array1.length;
-	array2.length = (inputArgs->length + 1) / 2;
+	ArrayInfo array2 = {
+		inputArgs->array + array1.length,
+		(inputArgs->length + 1) / 2,
+	};
 
 	pthread_t thread;
 	pthread_create(&thread, NULL, startThreadCreation, &array1);
