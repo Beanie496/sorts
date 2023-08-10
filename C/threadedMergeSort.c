@@ -11,6 +11,7 @@ typedef struct {
 } ArrayInfo;
 
 static void *startThreadCreation(void *inputArgsPtr);
+static void spawnNewThread(ArrayInfo *inputArgs);
 
 static int threadsAvailable;
 
@@ -24,8 +25,9 @@ void threadedMergeSort(int array[], int length)
 	srand(time(0));
 
 	tempFile = popen("/usr/bin/nproc", "r");
-	// TODO: is it 4 or 5? look it up after internet access has been acquired
-	fgets(tempStr, 5, tempFile); // As far as I know, there are no regular systems that have over 8192 cores. But just in case...
+	// As far as I know, there are no regular systems that have over 8192
+	// cores. But just in case...
+	fgets(tempStr, 5, tempFile);
 	pclose(tempFile);
 	// subtract one for the main thread
 	threadsAvailable = atoi(tempStr) - 1;
@@ -52,28 +54,33 @@ void *startThreadCreation(void *inputArgsPtr)
 	if (inputArgs->length == 1)
 		return NULL;
 
-	if (threadsAvailable > 0) {
-		// Reserve thread creation
-		threadsAvailable--;
-
-		ArrayInfo array1;
-		array1.array = inputArgs->array;
-		array1.length = inputArgs->length >> 1;
-
-		ArrayInfo array2;
-		array2.array = inputArgs->array + array1.length;
-		array2.length = inputArgs->length + 1 >> 1;
-
-
-		pthread_t thread;
-		pthread_create(&thread, NULL, startThreadCreation, &array1);
-		startThreadCreation(&array2); // Calling the function for the other half directly
-		pthread_join(thread, NULL);
-
-		merge(array1.array, array2.array, inputArgs->length);
-	} else {
+	if (threadsAvailable > 0)
+		spawnNewThread(inputArgs);
+	else
 		mergeSort(inputArgs->array, inputArgs->length);
-	}
 
 	return NULL;
+}
+
+
+void spawnNewThread(ArrayInfo *inputArgs)
+{
+	// Reserve thread creation
+	threadsAvailable--;
+
+	ArrayInfo array1;
+	array1.array = inputArgs->array;
+	array1.length = inputArgs->length / 2;
+
+	ArrayInfo array2;
+	array2.array = inputArgs->array + array1.length;
+	array2.length = (inputArgs->length + 1) / 2;
+
+	pthread_t thread;
+	pthread_create(&thread, NULL, startThreadCreation, &array1);
+	// Calling the function for the other half directly
+	startThreadCreation(&array2);
+	pthread_join(thread, NULL);
+
+	merge(array1.array, array2.array, inputArgs->length);
 }
