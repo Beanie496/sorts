@@ -7,30 +7,22 @@ static void heapify(int array[], int length);
 
 void heapsort(int array[], int length)
 {
-	int temp;
 	int *end = array + length - 1;
-
 
 	heapify(array, length);
 
 	while (array < end) {
-
-		temp = *end;
-		*end = array[0];
-		array[0] = temp;
-
+		swap(&array[0], end);
 		length--;
 		end--;
-
 		siftDown(array, array, length);
-
 	}
 }
 
 
 void heapify(int array[], int length)
 {
-	int *end = array + (length >> 1);
+	int *end = array + length / 2;
 
 	while (end > array)
 		siftDown(array, --end, length);
@@ -41,7 +33,8 @@ void siftDown(int array[], int *startPos, int length)
 {
 	int pos = startPos - array;
 	int newPos;
-	int posOfFirstChild = (pos << 1) + 1;
+	int posOfFirstChild = pos * 2 + 1;
+	int posOfSecondChild = pos * 2 + 2;
 
 
 	/*
@@ -51,24 +44,26 @@ void siftDown(int array[], int *startPos, int length)
 	 * After that, it checks if there was only one child and swaps
 	 * with it if needed.
 	 *
-	 * Logic behind this logical statement:
+	 * Logic:
 	 * If there is only one child, the right-hand side will be
 	 * equal to pos. If there are two, the right-hand side will
 	 * be one less. This ensures the loop is broken as soon as
 	 * there are fewer than two children.
 	 */
-	while (pos < length - 1 >> 1) {
-		if (!(array[pos] < array[posOfFirstChild] || array[pos] < array[posOfFirstChild + 1]))
+	while (pos < (length - 1) / 2) {
+		if (array[pos] >= array[posOfFirstChild] && array[pos] >= array[posOfSecondChild])
 			break;
 
 		if (array[posOfFirstChild + 1] > array[posOfFirstChild])
-			newPos = posOfFirstChild + 1;
+			newPos = posOfSecondChild;
 		else
 			newPos = posOfFirstChild;
+
 		swap(&array[pos], &array[newPos]);
 		pos = newPos;
 
-		posOfFirstChild = (pos << 1) + 1;
+		posOfFirstChild = pos * 2 + 1;
+		posOfSecondChild = pos * 2 + 2;
 	}
 
 
