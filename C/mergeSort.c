@@ -3,6 +3,8 @@
 #include "sorts.h"
 #include "util.h"
 
+static void merge(int *array1, int *array2, int length);
+
 
 void mergeSort(int array[], int length)
 {
