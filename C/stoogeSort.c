@@ -11,6 +11,6 @@ void stoogeSort(int array[], int length)
 	}
 
 	stoogeSort(array, 2 * (length + 1) / 3);
-	stoogeSort(array + length / 3, 2 * (length + 1) /3);
+	stoogeSort(array + length / 3, 2 * (length + 1) / 3);
 	stoogeSort(array, 2 * (length + 1) / 3);
 }
