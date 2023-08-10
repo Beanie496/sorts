@@ -11,7 +11,8 @@ typedef struct {
 } ArrayInfo;
 
 static void *startThreadCreation(void *inputArgsPtr);
-static void spawnNewThread(ArrayInfo *inputArgs);
+static void concurrentlySortArray(ArrayInfo *inputArgs);
+static void concurrentlySortTwoArrays(ArrayInfo array1, ArrayInfo array2);
 
 static int threadsAvailable;
 
@@ -55,7 +56,7 @@ void *startThreadCreation(void *inputArgsPtr)
 		return NULL;
 
 	if (threadsAvailable > 0)
-		spawnNewThread(inputArgs);
+		concurrentlySortArray(inputArgs);
 	else
 		mergeSort(inputArgs->array, inputArgs->length);
 
@@ -63,7 +64,7 @@ void *startThreadCreation(void *inputArgsPtr)
 }
 
 
-void spawnNewThread(ArrayInfo *inputArgs)
+void concurrentlySortArray(ArrayInfo *inputArgs)
 {
 	// Reserve thread creation
 	threadsAvailable--;
@@ -78,11 +79,17 @@ void spawnNewThread(ArrayInfo *inputArgs)
 		(inputArgs->length + 1) / 2,
 	};
 
+	concurrentlySortTwoArrays(array1, array2);
+
+	merge(array1.array, array2.array, inputArgs->length);
+}
+
+
+void concurrentlySortTwoArrays(ArrayInfo array1, ArrayInfo array2)
+{
 	pthread_t thread;
 	pthread_create(&thread, NULL, startThreadCreation, &array1);
 	// Calling the function for the other half directly
 	startThreadCreation(&array2);
 	pthread_join(thread, NULL);
-
-	merge(array1.array, array2.array, inputArgs->length);
 }
