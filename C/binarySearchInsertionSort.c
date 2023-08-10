@@ -3,9 +3,9 @@
 #include "sorts.h"
 #include "util.h"
 
- // this inserts the value at end into start
-static void insert(int *start, int *end);
-static int *search(int *start, int *end);
+ // this inserts the value at value into start, moving all ints forwards by one
+static void insert(int *insert, int *value);
+static int *binarySearch(int array[], int length, int *value);
 
 
 void binaryInsertionSort(int array[], int length)
@@ -13,7 +13,7 @@ void binaryInsertionSort(int array[], int length)
 	int *searchPtr = array;
 
 	while (++searchPtr - array < length)
-		insert(search(array, searchPtr), searchPtr);
+		insert(binarySearch(array, searchPtr - array, searchPtr), searchPtr);
 }
 
 
@@ -28,30 +28,24 @@ void insert(int *insert, int *value)
 }
 
 
-int *search(int *start, int *end)
+int *binarySearch(int array[], int length, int *value)
 {
-	int *searchPtr = start;
-	int temp = *end--;
+	if (length == 0)
+		return array;
 
-	// while there is still part of the array left to search, it repeatedly
-	// focuses on the half of the array that contains the value
-	do {
-		if (*searchPtr < temp) {
-			start = searchPtr + 1;
-			searchPtr = start + (end - start >> 1);
-		} else if (*searchPtr > temp) {
-			end = searchPtr - 1;
-			searchPtr = start + (end - start >> 1);
-		}
-	// 'start <= end': when the value that needs to be inserted is bigger
-	// than all previous values, it needs to be inserted at its own position,
-	// which is just past 'end', when it reaches that stage.
-	} while (*searchPtr != temp && start <= end);
+	if (length == 1)
+		// if the value in the array is smaller than the value, it
+		// needs to be inserted after
+		if (array[0] < *value)
+			return array + 1;
+		// otherwise, it needs to be inserted before
+		else
+			return array;
 
-	// when there is nothing left to search or it's found the value,
-	// return the address that the value needs to be inserted in
-	if (end < start)
-		return start;
+	if (array[length / 2] > *value)
+		return binarySearch(&array[0], length / 2, value);
+	else if (array[length / 2] == *value)
+		return &array[length / 2];
 	else
-		return searchPtr;
+		return binarySearch(&array[length / 2 + 1], (length - 1) / 2, value);
 }
