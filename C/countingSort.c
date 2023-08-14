@@ -23,17 +23,12 @@ void countingSort(int array[], int length)
 	for (int i = 1; i < max + 1; i++)
 		countingList[i] += countingList[i - 1];
 
-	// shift each number along in order to get the starting index of each
-	// number
-	memmove(&countingList[1], &countingList[0], (max + 1) * sizeof(*countingList));
-	countingList[0] = 0;
-
 	for (int i = 0; i < length; i++) {
 		// get the right index for the number and insert it
-		secondaryArray[countingList[array[i]]] = array[i];
+		secondaryArray[countingList[array[i]] - 1] = array[i];
 		// increment the index, as the next identical number needs to
 		// be stored in the next index
-		countingList[array[i]]++;
+		countingList[array[i]]--;
 	}
 
 	memcpy(array, secondaryArray, sizeof(*array) * length);
