@@ -5,15 +5,15 @@
 
  // this inserts the value at value into start, moving all ints forwards by one
 static void insert(int *insert, int *value);
-static int *binarySearch(int array[], int length, int *value);
+static int *binarySearch(int *array, int *length, int *value);
 
 
 void binaryInsertionSort(int array[], int length)
 {
 	int *searchPtr = array;
 
-	while (++searchPtr - array < length)
-		insert(binarySearch(array, searchPtr - array, searchPtr), searchPtr);
+	while (++searchPtr - array <= length)
+		insert(binarySearch(array, searchPtr - 1, searchPtr), searchPtr);
 }
 
 
@@ -28,24 +28,18 @@ void insert(int *insert, int *value)
 }
 
 
-int *binarySearch(int array[], int length, int *value)
+// returns a pointer to the value found in the array. Otherwise, it returns a
+// pointer to the smallest value that is larger than the value being found.
+int *binarySearch(int *start, int *end, int *value)
 {
-	if (length == 0)
-		return array;
-
-	if (length == 1)
-		// if the value in the array is smaller than the value, it
-		// needs to be inserted after
-		if (array[0] < *value)
-			return array + 1;
-		// otherwise, it needs to be inserted before
-		else
-			return array;
-
-	if (array[length / 2] > *value)
-		return binarySearch(&array[0], length / 2, value);
-	else if (array[length / 2] == *value)
-		return &array[length / 2];
-	else
-		return binarySearch(&array[length / 2 + 1], (length - 1) / 2, value);
+        while (end > start) {
+                int *mid = start + ((end - start) >> 1);
+                if (*mid == *value)
+                        return mid;
+                if (*mid > *value)
+                        end = mid - 1;
+                else
+                        start = mid + 1;
+        }
+        return start;
 }
