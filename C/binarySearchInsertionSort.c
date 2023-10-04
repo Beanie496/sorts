@@ -12,8 +12,11 @@ void binaryInsertionSort(int array[], int length)
 {
 	int *searchPtr = array;
 
-	while (++searchPtr - array <= length)
+	while (++searchPtr - array < length) {
+		printArray(array, length);
+		printf("\n");
 		insert(binarySearch(array, searchPtr - 1, searchPtr), searchPtr);
+	}
 }
 
 
@@ -29,17 +32,18 @@ void insert(int *insert, int *value)
 
 
 // returns a pointer to the value found in the array. Otherwise, it returns a
-// pointer to the smallest value that is larger than the value being found.
+// pointer to the largest value that is smaller than the value being searched
+// for.
 int *binarySearch(int *start, int *end, int *value)
 {
-        while (end > start) {
-                int *mid = start + ((end - start) >> 1);
-                if (*mid == *value)
-                        return mid;
-                if (*mid > *value)
-                        end = mid - 1;
-                else
-                        start = mid + 1;
-        }
-        return start;
+	while (end >= start) {
+		int *mid = start + ((end - start) >> 1);
+		if (*mid == *value)
+			return mid;
+		if (*mid > *value)
+			end = mid - 1;
+		else
+			start = mid + 1;
+	}
+	return start;
 }
