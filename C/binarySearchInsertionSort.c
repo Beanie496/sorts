@@ -12,11 +12,8 @@ void binaryInsertionSort(int array[], int length)
 {
 	int *searchPtr = array;
 
-	while (++searchPtr - array < length) {
-		printArray(array, length);
-		printf("\n");
+	while (++searchPtr - array < length)
 		insert(binarySearch(array, searchPtr - 1, searchPtr), searchPtr);
-	}
 }
 
 
