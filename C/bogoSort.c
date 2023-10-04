@@ -11,26 +11,21 @@ static void shuffle(int array[], int length);
 int bogoSort(int array[], int length)
 {
 	int counter = 0;
-	int sorted = 0;
 
-	while (!sorted) {
-		sorted = checkArrayIsSorted(array, length);
+	do {
 		shuffle(array, length);
 		counter++;
-	}
+	} while (!checkArrayIsSorted(array, length));
+
 	return counter;
 }
 
 int checkArrayIsSorted(int array[], int length)
 {
-	int sorted = 1;
-	for (int i = 1; i < length; i++) {
-		if (array[i] < array[i - 1]) {
-			sorted = 0;
-			break;
-		}
-	}
-	return sorted;
+	for (int i = 1; i < length; i++)
+		if (array[i] < array[i - 1])
+			return 0;
+	return 1;
 }
 
 // fisher-random shuffle
@@ -42,9 +37,8 @@ void shuffle(int array[], int length)
 		hasSeeded = 1;
 	}
 
-	int randItem;
 	for (int i = 0; i < length - 1; i++) { // no point swapping the last item with itself
-		randItem = random() % (length - i) + i;
+		int randItem = random() % (length - i) + i;
 		swap(&array[i], &array[randItem]);
 	}
 }
