@@ -13,12 +13,11 @@ int main(int argc, char *argv[])
 	// TODO: command-line args
 
 	// 100,000,000
-	//dosort(100000000, (int (*)(int *, int))binaryRadixSort, "Binary radix sort");
+	dosort(100000000, (int (*)(int *, int))binaryRadixSort, "Binary radix sort");
 
 	// 400,000
 	dosort(400000, (int (*)(int *, int))binaryInsertionSort, "Binary search insertion sort");
 
-	/*
 	// 11
 	// you can try 12, but do you really want to wait that long?
 	// remember bogo sorts are O(n!)
@@ -29,7 +28,7 @@ int main(int argc, char *argv[])
 	dosort(40000, (int (*)(int *, int))bubbleSort, "Bubble sort");
 
 	// 100,000,000
-	dosort(100000000, (int (*)(int *, int))countingSort, "Counting sort");
+	dosort(100, (int (*)(int *, int))countingSort, "Counting sort");
 
 	// 100,000,000
 	dosort(100000000, (int (*)(int *, int))decimalRadixSort, "Decimal radix sort");
@@ -57,7 +56,7 @@ int main(int argc, char *argv[])
 
 	// 100,000,000
 	dosort(400000000, (int (*)(int *, int))threadedMergeSort, "Threaded merge sort");
-	*/
+
 	return 0;
 }
 
