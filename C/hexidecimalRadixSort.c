@@ -28,12 +28,9 @@ void digitCountingSort(int array[], int length, int digit)
 	for (int i = 1; i < 16; i++)
 		valuesTotal[i] += valuesTotal[i - 1];
 
-	memmove(&valuesTotal[1], &valuesTotal[0], sizeof(*valuesTotal) * 15);
-	valuesTotal[0] = 0;
-
 	for (int i = 0; i < length; i++) {
 		secondaryArray[valuesTotal[(array[i] >> digit) & 15]] = array[i];
-		valuesTotal[(array[i] >> digit) & 15]++;
+		valuesTotal[(array[i] >> digit) & 15]--;
 	}
 
 	memcpy(array, secondaryArray, sizeof(*array) * length);
