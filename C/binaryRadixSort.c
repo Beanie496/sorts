@@ -25,9 +25,13 @@ void digitCountingSort(int array[], int length, int shiftBy)
 	for (int i = 0; i < length; i++)
 		valuesTotal[(array[i] >> shiftBy) % 2]++;
 
+	// doing it this way is more explicit, if more verbose
+	memmove(&valuesTotal[1], &valuesTotal[0], sizeof(*valuesTotal) * 1);
+	valuesTotal[0] = 0;
+
 	for (int i = 0; i < length; i++) {
 		secondaryArray[valuesTotal[(array[i] >> shiftBy) % 2]] = array[i];
-		valuesTotal[(array[i] >> shiftBy) % 2]--;
+		valuesTotal[(array[i] >> shiftBy) % 2]++;
 	}
 
 	memcpy(array, secondaryArray, sizeof(*array) * length);
