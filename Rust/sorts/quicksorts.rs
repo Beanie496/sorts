@@ -1,12 +1,11 @@
 macro_rules! swap {
     ($x: expr, $y: expr) => {
         ($x, $y) = ($y, $x)
-    }
+    };
 }
 
-pub fn quicksort_slice(arr: &mut [i32])
-{
-    if arr.len() == 0 {
+pub fn quicksort_slice(arr: &mut [i32]) {
+    if arr.is_empty() {
         return;
     }
 
@@ -28,20 +27,20 @@ pub fn quicksort_slice(arr: &mut [i32])
     quicksort_slice(&mut arr[(p1 + 1)..=pivot]);
 }
 
-pub fn quicksort_ptr(arr: &mut [i32])
-{
+pub fn quicksort_ptr(arr: &mut [i32]) {
     if arr.len() <= 1 {
         return;
     }
-    
+
     let start = arr.as_mut_ptr();
     let end = unsafe { start.add(arr.len() - 1) };
 
-    unsafe { partition(start, end); }
+    unsafe {
+        partition(start, end);
+    }
 }
 
-unsafe fn partition(start: *mut i32, end: *mut i32)
-{
+unsafe fn partition(start: *mut i32, end: *mut i32) {
     if start >= end {
         return;
     }
