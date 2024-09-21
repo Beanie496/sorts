@@ -1,30 +1,26 @@
-macro_rules! swap {
-    ($x: expr, $y: expr) => {
-        ($x, $y) = ($y, $x)
-    };
-}
+use core::ptr::swap;
 
 pub fn quicksort_slice(arr: &mut [i32]) {
     if arr.is_empty() {
         return;
     }
 
-    let pivot = arr.len() - 1;
-    let mut p1 = 0;
-    let mut p2 = 0;
+    let Some(&last) = arr.last() else {
+        return;
+    };
+    let mut smaller = 0;
 
-    while p2 < pivot {
-        if arr[p2] < arr[pivot] {
-            swap!(arr[p1], arr[p2]);
-            p1 += 1;
+    for larger in 0..arr.len() {
+        if arr[larger] < last {
+            arr.swap(smaller, larger);
+            smaller += 1;
         }
-        p2 += 1;
     }
 
-    swap!(arr[p1], arr[pivot]);
+    arr.swap(smaller, arr.len() - 1);
 
-    quicksort_slice(&mut arr[0..p1]);
-    quicksort_slice(&mut arr[(p1 + 1)..=pivot]);
+    quicksort_slice(&mut arr[..smaller]);
+    quicksort_slice(&mut arr[(smaller + 1)..]);
 }
 
 pub fn quicksort_ptr(arr: &mut [i32]) {
@@ -51,13 +47,13 @@ unsafe fn partition(start: *mut i32, end: *mut i32) {
 
     while p2 < pivot {
         if *p2 < *pivot {
-            swap!(*p1, *p2);
+            swap(p1, p2);
             p1 = p1.add(1);
         }
         p2 = p2.add(1);
     }
 
-    swap!(*p1, *pivot);
+    swap(p1, pivot);
 
     partition(start, p1.wrapping_sub(1));
     partition(p1.wrapping_add(1), end);
